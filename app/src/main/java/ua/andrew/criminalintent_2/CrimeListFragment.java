@@ -1,6 +1,7 @@
 package ua.andrew.criminalintent_2;
 
 import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +14,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -103,8 +103,9 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else{
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
-        }
+            }
         updateSubtitle();
     }
 
@@ -157,6 +158,10 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+        public void setCrimes(List<Crime> crimes){
+            mCrimes=crimes;
         }
     }
 }
