@@ -13,7 +13,8 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.List;
 import java.util.UUID;
 
-public class CrimePagerActivity extends AppCompatActivity {
+public class CrimePagerActivity extends AppCompatActivity
+implements CrimeFragment.Callbacks{
     private ViewPager mViewPager;
     private List<Crime> mCrimes;
     private static final String EXTRA_CRIME_ID=".android.criminalintent_2.crime_id";
@@ -38,7 +39,7 @@ public class CrimePagerActivity extends AppCompatActivity {
             @Override
             public Fragment getItem(int position) {
                 Crime crime =mCrimes.get(position);
-                return CrimeFragment.newInstrance(crime.getId());
+                return CrimeFragment.newInstance(crime.getId());
             }
 
             @Override
@@ -52,5 +53,10 @@ public class CrimePagerActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onCrimeUpdated(Crime crime) {
+
     }
 }
